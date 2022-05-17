@@ -1,11 +1,10 @@
 const squares = document.querySelectorAll('.square')
-const mole = document.querySelector('.mole')
-
+// const mole = document.querySelector('.mole')
 const timeLeft = document.querySelector('#time-left')
 const score = document.querySelector('#score')
 
 let result = 0;
-let hitPosition
+let MolePosition
 let currentTime = 10
 let timeId = null
 
@@ -17,38 +16,40 @@ function randomSquare() {
     })
     // select random squares 
     let randomSquare = squares[Math.floor(Math.random()*9)]
-    // add the mole class 
+    // add the mole class to random selected square
     randomSquare.classList.add('mole')
     // store the id of the square with the mole
-    hitPosition = randomSquare.id
+    MolePosition = randomSquare.id
 }
 // add event listener to all squares so that we know if we hit a square with the mole
 squares.forEach(square =>{
     square.addEventListener('mousedown', () => {
-        if(square.id == hitPosition){
+        if(square.id == MolePosition){
             result++
             score.textContent = result 
         }
     })
 })
 
-// call the randomSqure at intervals inside moveMole function
+// move the Mole randonly based on the give miliseconds
 function moveMole(){
     timeId = setInterval(randomSquare, 1000)
 }
-
+// call the moveMole function
 moveMole()
 
+// count down timer function that ends game
 function countDown(){
     // reduce the time by 1 
     currentTime--
     timeLeft.textContent = currentTime
-
+    // end Game if timer elapses
     if(currentTime == 0){
         clearInterval(countDownTimerId)
         clearInterval(timeId)
         alert('Game Over , your score is ' + result)
     }
 }
+
 
 let countDownTimerId = setInterval(countDown, 1000)

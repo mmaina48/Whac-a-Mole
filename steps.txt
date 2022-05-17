@@ -1,0 +1,10 @@
+Steps i took to create this project
+- create a 3*3 grid of squares
+- create a function to randomly select a square
+- Add a class "mole" to the randomly selected square
+- Add  mousedown event listner every square
+- Check to see if the mousedown square is the one with class mole
+- Add points if its the one
+- Add a function to countdown the timer
+- Add a function to stop the game one the timer elapses
+
