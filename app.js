@@ -47,8 +47,7 @@ function countDown() {
   document.getElementById('time-left').innerHTML = timeLeft;
   if (timeLeft === 0){
       stopCountDown()
-      endGame()
-      
+      endGame() 
   }
 }
 
@@ -79,9 +78,6 @@ function pauseGame(){
     stopScoreCount()
 }
 
-function showResults(){
-    document.getElementById('id01').style.display='block'
-}
 // A function to end the game
 function endGame(){
     stopMole()
@@ -94,8 +90,10 @@ function endGame(){
     document.getElementById('time-left_1').innerHTML = timeLeft;
     document.getElementById('resuit_1').innerHTML = score;
     showResults();
-    
+}
 
+function openModal(){
+    document.getElementById('id01').style.display='block'
 }
 
 function closeModal(){
