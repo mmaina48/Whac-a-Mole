@@ -1,55 +1,114 @@
-const squares = document.querySelectorAll('.square')
-// const mole = document.querySelector('.mole')
-const timeLeft = document.querySelector('#time-left')
-const score = document.querySelector('#score')
+// get all the squares
+const squares = document.querySelectorAll('.square');
+// set timeLeft value
+let timeLeft = 30;
+// set start score value
+let score = 0; 
 
-let result = 0;
-let MolePosition
-let currentTime = 10
-let timeId = null
+let moveMolerId;
+let countDownId;
 
-// create a function to randomly add a mole to the squares
-function randomSquare() {
-    // get all the squares and remove the mole class
-    squares.forEach(square => {
-      square.classList.remove('mole')
-    })
-    // select random squares 
-    let randomSquare = squares[Math.floor(Math.random()*9)]
-    // add the mole class to random selected square
-    randomSquare.classList.add('mole')
-    // store the id of the square with the mole
-    MolePosition = randomSquare.id
+// A function to randomly move throughout the grid
+function MoveMole(){
+    for(i=0; i<squares.length; i++){
+        squares[i].classList.remove("mole")
+    }
+    let randomSelectedSquare = squares[Math.floor(Math.random()* 12)]
+    randomSelectedSquare.classList.add('mole') 
 }
-// add event listener to all squares so that we know if we hit a square with the mole
-squares.forEach(square =>{
-    square.addEventListener('mousedown', () => {
-        if(square.id == MolePosition){
-            result++
-            score.textContent = result 
-        }
-    })
-})
 
-// move the Mole randonly based on the give miliseconds
-function moveMole(){
-    timeId = setInterval(randomSquare, 1000)
-}
-// call the moveMole function
-moveMole()
-
-// count down timer function that ends game
-function countDown(){
-    // reduce the time by 1 
-    currentTime--
-    timeLeft.textContent = currentTime
-    // end Game if timer elapses
-    if(currentTime == 0){
-        clearInterval(countDownTimerId)
-        clearInterval(timeId)
-        alert('Game Over , your score is ' + result)
+// callback function to addEventListener and removeEventListener methods
+function addScore(event){
+    let clickedSquare = event.target
+    if (clickedSquare.classList.contains('mole') === true){
+        score++
+        document.getElementById('resuit').innerHTML = score;
     }
 }
 
+// A function to add event listener to all the squares
+function addListener(){
+    squares.forEach(square => {
+        square.addEventListener('click', addScore) //callback 
+    })
+}
+// call addListener
+addListener()
 
-let countDownTimerId = setInterval(countDown, 1000)
+// A function to stop score count
+function stopScoreCount(){
+    squares.forEach(square =>{
+        square.removeEventListener('click', addScore)
+    })
+}
+// A function to count down time
+function countDown() {
+  timeLeft--
+  document.getElementById('time-left').innerHTML = timeLeft;
+  if (timeLeft === 0){
+      stopCountDown()
+      endGame()
+      
+  }
+}
+
+// A fuction to call moveMove fxn at a set time interval
+function startGame(){
+    moveMolerId = setInterval(MoveMole, 1000) 
+}
+
+// A fuction to call countDown fxn at a set time interval
+function startCountDown(){
+    countDownId = setInterval(countDown, 1000)
+}
+
+// A function to stop timer count down
+function stopCountDown(){
+    clearInterval(countDownId)
+}
+
+// A function to stop the mole from moving
+function stopMole(){
+    clearInterval(moveMolerId)
+}
+
+// A function to pause game
+function pauseGame(){
+    stopMole()
+    stopCountDown()
+    stopScoreCount()
+}
+
+function showResults(){
+    document.getElementById('id01').style.display='block'
+}
+// A function to end the game
+function endGame(){
+    stopMole()
+    stopCountDown()
+    stopScoreCount()
+    // timeLeft = 30;
+    // score = 0;
+    document.getElementById('time-left').innerHTML = timeLeft;
+    document.getElementById('resuit').innerHTML = score;
+    document.getElementById('time-left_1').innerHTML = timeLeft;
+    document.getElementById('resuit_1').innerHTML = score;
+    showResults();
+    
+
+}
+
+function closeModal(){
+    document.getElementById('id01').style.display='none'
+}
+
+function resetScoreAndTimer(){
+    timeLeft = 30;
+    score = 0;
+    document.getElementById('time-left').innerHTML = timeLeft;
+    document.getElementById('resuit').innerHTML = score;
+    document.getElementById('time-left_1').innerHTML = timeLeft;
+    document.getElementById('resuit_1').innerHTML = score;
+}
+
+

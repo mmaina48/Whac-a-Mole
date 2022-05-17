@@ -1,10 +1,17 @@
-Steps i took to create this project
-- create a 3*3 grid of squares
-- create a function to randomly select a square
-- Add a class "mole" to the randomly selected square
-- Add  mousedown event listner every square
-- Check to see if the mousedown square is the one with class mole
-- Add points if its the one
-- Add a function to countdown the timer
-- Add a function to stop the game one the timer elapses
+This is a game project called "Whac-a-Mole".
+Its all about clicking the square with the mole.
+The mole randomly appears on different squares.
+To earn points , we calculate how many mole you have caught within a minute.
+
+Steps to execute this points
+1.Am going to use HTML5, CSS and Javascript
+2.Create a 3*3 grid 
+3.Add a function that randomly adds class mole to a square.
+4.Add a function that clears the square with class "mole"
+5.check and see if the clicked square has the mole
+6.If the checked square has the mole add points
+7.Add another function to countdown time
+8.If the time elaspses end game.
+
+event listeners : https://sebhastian.com/javascript-remove-event-listener/
 

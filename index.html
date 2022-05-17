@@ -4,22 +4,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catch Me</title>
     <link rel="stylesheet" href="style.css">
+    <title>Document</title>
 </head>
 <body>
-    <h2>Your Score :<span id="score">0</span></h2>
-    <h2>Time Left :<span id="time-left">0</span></h2>
-    <div class="grid">
-        <div class="square" id="1"></div>
-        <div class="square" id="2"></div>
-        <div class="square " id="3"></div>
-        <div class="square" id="4"></div>
-        <div class="square" id="5"></div>
-        <div class="square" id="6"></div>
-        <div class="square" id="7"></div>
-        <div class="square" id="8"></div>
-        <div class="square" id="9"></div>
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+        <form class="modal-content" action="/action_page.php">
+          <div class="container">
+            <h1>GAME OVER !!</h1>
+            <div class="display-results">
+                <div class="score">
+                    <h2>Score: <span id="resuit_1">0</span></h2>
+                </div>
+                <div class="timer">
+                    <h2>Time Left: <span id="time-left_1">30</span>s</h2>
+                </div>
+                
+            </div>
+          
+            <div class="clearfix">
+              <button type="button" onclick="closeModal();startGame();startCountDown();addListener();resetScoreAndTimer()" class="deletebtn">Restart Game</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    <div class="header">
+        <div class="score">
+            <h2>Score: <span id="resuit">0</span></h2>
+        </div>
+        <div class="timer">
+            <h2>Timer: <span id="time-left">30</span>s</h2>
+        </div>
+    </div>
+    <div class="controls">
+        <div class="start-game">
+            <button class="start" onclick="startGame();startCountDown();addListener()">Start Game</button>
+        </div>
+        <div class="pause-game">
+            <button class="pause" onclick="pauseGame()">Pause Game</button>
+        </div>
+        <div class="end-game">
+            <button class="end" onclick="endGame()">End Game</button>
+        </div>
+    </div>
+    <div class="container">
+        <div id="grid">
+            <div class="square" id="1"></div>
+            <div class="square" id="2"></div>
+            <div class="square" id="3"></div>
+            <div class="square" id="4"></div>
+            <div class="square " id="5"></div>
+            <div class="square" id="6"></div>
+            <div class="square" id="7"></div>
+            <div class="square" id="8"></div>
+            <div class="square" id="9"></div>
+            <div class="square" id="10"></div>
+            <div class="square" id="11"></div>
+            <div class="square" id="12"></div>  
+        </div>
     </div>
 
     <script src="app.js"></script>
